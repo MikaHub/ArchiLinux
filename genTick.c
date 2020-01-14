@@ -34,7 +34,7 @@ int main( int argc, char* argv[] )
         }
     }
     
-    // End of program
+    // End of program fs
     printf("genTick end\n");
     return 0;
 }
