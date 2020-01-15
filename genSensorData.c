@@ -31,16 +31,15 @@ int main(int argc, char* argv[])
 
         //write(1, &"j", 1);
 
-        if(c == 'E' | c == 'R') 
+        if(c == 'E') 
         {
-          printf("We have problem\n");
+          write(2, &c, 1);
         }
-        else 
+        else if (c == 'K')
         {
-          printf("We have no problem\n");
+          write(1, &c, 1);
         }
         
-
     }
     
 
