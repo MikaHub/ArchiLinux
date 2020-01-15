@@ -8,6 +8,8 @@ par exemple un message à l'écran.
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <stdio.h>
+#include <string.h>
 /*
 Ci-dessous, vous avez la fonction principale du programme, appelée main.
 C'est par cette fonction que tous les programmes commencent.
@@ -16,17 +18,32 @@ Ici, ma fonction se contente d'afficher Bonjour à l'écran.
 int main(int argc, char* argv[])
 {
     printf("Bienvenue jeune padawan\n"); // Cette instruction affiche Bonjour à l'écran
+
     // printf("nb = %d\n", argc);
     char c; /* le caractere */
     // for(int i = 0 ; i < argc; i++){
     //     printf("%s \n", argv[i]);
     // }
+    
     while (read(0, &c, 1) == 1)
     {
+        //write(1, &c, 1);
 
-        write(1, &c, 1);
+        //write(1, &"j", 1);
+
+        if(c == 'E' | c == 'R') 
+        {
+          printf("We have problem\n");
+        }
+        else 
+        {
+          printf("We have no problem\n");
+        }
+        
+
     }
     
+
     /*printf("Veuillez taper un caractere : ");
     c = getc(stdin);
 
@@ -34,5 +51,5 @@ int main(int argc, char* argv[])
     putc(c, stdout) ;
     printf("\n");*/
 
-  return 0;          // Le programme renvoie le nombre 0 puis s'arrête
+  return 0; // Le programme renvoie le nombre 0 puis s'arrête
 }
