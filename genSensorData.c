@@ -10,6 +10,12 @@ par exemple un message à l'écran.
 #include <unistd.h>
 #include <stdio.h>
 #include <string.h>
+
+char GreatBuffer [100];
+char ErrorBuffer [100];
+char c;
+char b;
+
 /*
 Ci-dessous, vous avez la fonction principale du programme, appelée main.
 C'est par cette fonction que tous les programmes commencent.
@@ -20,7 +26,6 @@ int main(int argc, char* argv[])
     printf("Bienvenue jeune padawan\n"); // Cette instruction affiche Bonjour à l'écran
 
     // printf("nb = %d\n", argc);
-    char c; /* le caractere */
     // for(int i = 0 ; i < argc; i++){
     //     printf("%s \n", argv[i]);
     // }
@@ -28,27 +33,46 @@ int main(int argc, char* argv[])
     while (read(0, &c, 1) == 1)
     {
         //write(1, &c, 1);
-
         //write(1, &"j", 1);
 
-        if(c == 'E') 
+        // Name of sensors
+        char* sensorNames[]=
         {
-          write(2, &c, 1);
+          "Temperature",
+          "Luminosite",
+          "Son"
+        };
+
+        // Name of errors 
+        char* errorCodes[]={
+          "Erreur 1",
+          "Erreur 2",
+          "Erreur 3"
+        };
+
+        int sensorId = rand()%(1000);
+        char* sensorName = sensorNames[rand()%(3)];
+        int minValue = rand()%(100 +1);
+        int value = minValue + rand() %(100 +1);
+        int meanValue = value + rand() %(100 + 1);
+        int maxValue = meanValue + rand() %(100 + 1);
+        char* errorCode = errorCodes[rand()%(3)];
+        char errorDetail[] = "Une erreur est survenue !\n";
+
+        // Value ascii 79 = O / 10 = Line feed \n 
+        // %s for string and %d for decimal
+        if (c==79 && b==10){
+            sprintf(GreatBuffer , "\n %d, %s, %d, %d, %d,%d \n", sensorId, sensorName,value, minValue, meanValue, maxValue );
+            write(1,GreatBuffer,strlen(GreatBuffer));
         }
-        else if (c == 'K')
-        {
-          write(1, &c, 1);
+        // 69 = E
+        else if(c==69 && b==10){
+            sprintf(ErrorBuffer, "\n %d, %s, %s \n",sensorId, errorCode, errorDetail);
+            write(2,ErrorBuffer,strlen(ErrorBuffer));
         }
-        
+        b = c;
     }
-    
-
-    /*printf("Veuillez taper un caractere : ");
-    c = getc(stdin);
-
-    printf("Vous avez tape  : ");
-    putc(c, stdout) ;
-    printf("\n");*/
-
-  return 0; // Le programme renvoie le nombre 0 puis s'arrête
+  // force l'affichage (vide le buffer), les caractères sont mit en mémoire
+  fflush(stdout);
+  return 0; // program return 0 and end 
 }
