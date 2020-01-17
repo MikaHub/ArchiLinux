@@ -1,9 +1,6 @@
 /*
-Ci-dessous, ce sont des directives de préprocesseur.
-Ces lignes permettent d'ajouter des fichiers au projet,
-fichiers que l'on appelle bibliothèques.
-Grâce à ces bibliothèques, on disposera de fonctions toutes prêtes pour afficher
-par exemple un message à l'écran.
+Preprocessor directives.
+Add file on project via a library
 */
 #include <stdio.h>
 #include <stdlib.h>
@@ -17,13 +14,12 @@ char c;
 char b;
 
 /*
-Ci-dessous, vous avez la fonction principale du programme, appelée main.
-C'est par cette fonction que tous les programmes commencent.
-Ici, ma fonction se contente d'afficher Bonjour à l'écran.
+Main function of the program
+All program start here
 */
 int main(int argc, char* argv[])
 {
-    printf("Bienvenue jeune padawan\n"); // Cette instruction affiche Bonjour à l'écran
+    printf("Bienvenue jeune padawan\n"); 
 
     // printf("nb = %d\n", argc);
     // for(int i = 0 ; i < argc; i++){
@@ -73,6 +69,7 @@ int main(int argc, char* argv[])
         b = c;
     }
   // force l'affichage (vide le buffer), les caractères sont mit en mémoire
+  // foce display, clean buffer 
   fflush(stdout);
   return 0; // program return 0 and end 
 }
